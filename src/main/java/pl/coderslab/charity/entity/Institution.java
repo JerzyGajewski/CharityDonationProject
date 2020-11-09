@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +21,7 @@ public class Institution {
     @Column(columnDefinition = "TEXT")
     String description;
 
-    @OneToOne
-    private Donation donation;
+    @OneToMany
+    private List<Donation> donationList = new ArrayList<>();
+    //fixtury do fundacji i liczby darów
 }

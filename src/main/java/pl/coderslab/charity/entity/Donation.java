@@ -29,7 +29,7 @@ public class Donation {
     @ManyToOne
     private Category category;
 
-    @OneToOne(mappedBy = "donation")
+    @ManyToOne
     private Institution institution;
 
 
