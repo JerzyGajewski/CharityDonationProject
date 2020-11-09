@@ -83,8 +83,8 @@
         <ul class="help--slides-items">
             <li th:each="institutions : *{institution}">
                <div class="col">
-                    <div class="title" th:text="${institutions.name}"></div>
-                    <div class="subtitle" th:text="${institutions.description}"></div>
+                    <div class="title" th:text="'Fundacja: ' + ${institutions.name}"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institutions.description}"></div>
                 </div>
             </li>
 
