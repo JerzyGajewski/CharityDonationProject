@@ -80,11 +80,15 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items">
-            <li th:each="institutions : *{institution}">
+        <ul class="help--slides-items" th:each="institutions : ${#numbers.sequence(0, #arrays.length(institution)-2)}" th:if="${institutions} %2 ==0">
+            <li>
                <div class="col">
-                    <div class="title" th:text="'Fundacja: ' + ${institutions.name}"></div>
-                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institutions.description}"></div>
+                    <div class="title" th:text="'Fundacja: ' + ${institution[institutions].name}"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[institutions].description}"></div>
+                </div>
+                <div class="col">
+                    <div class="title" th:text="'Fundacja: ' + ${institution[institutions+1].name}"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[institutions+1].description}"></div>
                 </div>
             </li>
 

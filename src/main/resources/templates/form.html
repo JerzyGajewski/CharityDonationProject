@@ -81,58 +81,21 @@
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="form-confirmation.html" method="post">
+        <form th:action="@{/form.html}" method="post" th:object="${donation}">
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
-            <div class="form-group form-group--checkbox">
+            <div class="form-group form-group--checkbox" th:each="category : ${categories}">
               <label>
                 <input
                   type="checkbox"
                   name="categories"
-                  value="clothes-to-use"
+                  th:value="${category.id}"
                 />
                 <span class="checkbox"></span>
-                <span class="description"
-                  >ubrania, które nadają się do ponownego użycia</span
+                <span class="description" th:text="${category.name}"></span
                 >
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input
-                  type="checkbox"
-                  name="categories"
-                  value="clothes-useless"
-                />
-                <span class="checkbox"></span>
-                <span class="description">ubrania, do wyrzucenia</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="toys" />
-                <span class="checkbox"></span>
-                <span class="description">zabawki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="books" />
-                <span class="checkbox"></span>
-                <span class="description">książki</span>
-              </label>
-            </div>
-
-            <div class="form-group form-group--checkbox">
-              <label>
-                <input type="checkbox" name="categories" value="other" />
-                <span class="checkbox"></span>
-                <span class="description">inne</span>
               </label>
             </div>
 
@@ -148,7 +111,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba worków:
-                <input type="number" name="bags" step="1" min="1" />
+                <input id="bagQuantity" type="number" name="bags" step="1" min="1" th:field="*{quantity}"/>
               </label>
             </div>
 
@@ -164,9 +127,9 @@
           <div data-step="3">
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-            <div class="form-group form-group--checkbox" th:each="institutions : *{institution}">
+            <div class="form-group form-group--checkbox" th:each="institutions : ${institution}">
               <label>
-                <input type="radio" name="organization" value="old" />
+                <input type="radio" name="organization" th:value="${institutions.id}" th:field="*{institution}"/>
                 <span class="checkbox radio"></span>
                 <span class="description" >
                   <div class="title" th:text="'Fundacje: ' + ${institutions.name}"></div>
@@ -190,22 +153,22 @@
               <div class="form-section--column">
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Ulica <input type="text" name="address" /> </label>
+                  <label> Ulica <input type="text" id="street" name="address" th:field="*{street}" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Miasto <input type="text" name="city" /> </label>
+                  <label> Miasto <input type="text" name="city" id="city" th:field="*{city}" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy <input type="text" name="postcode" />
+                    Kod pocztowy <input type="text" name="postcode" id="postcode" th:field="*{zipCode}" />
                   </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Numer telefonu <input type="phone" name="phone" />
+                    Numer telefonu <input type="phone" name="phone" id="phone" th:field="*{phone}"/>
                   </label>
                 </div>
               </div>
@@ -213,17 +176,17 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input type="date" name="data" /> </label>
+                  <label> Data <input type="date" name="data" id="pisckupDate" th:field="*{pickUpDate}"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input type="time" name="time" /> </label>
+                  <label> Godzina <input type="time" name="time" id="pickupTime" th:field="*{pickUpTime}" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <textarea name="more_info" rows="5"></textarea>
+                    <textarea name="more_info" rows="5" th:field="*{pickUpComment}"></textarea>
                   </label>
                 </div>
               </div>
@@ -244,16 +207,13 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text"
-                      >4 worki ubrań w dobrym stanie dla dzieci</span
+                    <span class="summary--text"></span
                     >
                   </li>
 
                   <li>
                     <span class="icon icon-hand"></span>
-                    <span class="summary--text"
-                      >Dla fundacji "Mam marzenie" w Warszawie</span
-                    >
+                    <span class="summary--text"></span>
                   </li>
                 </ul>
               </div>
@@ -262,10 +222,10 @@
                 <div class="form-section--column">
                   <h4>Adres odbioru:</h4>
                   <ul>
-                    <li>Prosta 51</li>
-                    <li>Warszawa</li>
-                    <li>99-098</li>
-                    <li>123 456 789</li>
+                    <li id="streetS"></li>
+                    <li id="cityS"></li>
+                    <li id="postcodeS"></li>
+                    <li id="phoneS"></li>
                   </ul>
                 </div>
 

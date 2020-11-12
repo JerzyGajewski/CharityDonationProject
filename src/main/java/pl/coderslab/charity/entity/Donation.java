@@ -18,6 +18,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     Integer quantity;
+    String phone;
     String street;
     String city;
     String zipCode;
