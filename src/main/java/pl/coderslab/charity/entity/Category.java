@@ -19,7 +19,7 @@ public class Category {
     long id;
     String name;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "categoryList")
     List<Donation> donationList = new ArrayList<>();
 
 }

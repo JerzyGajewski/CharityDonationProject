@@ -23,7 +23,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em th:text="${donationQuantity}"></em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
@@ -80,15 +80,15 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items" th:each="institutions : ${#numbers.sequence(0, #arrays.length(institution)-2)}" th:if="${institutions} %2 ==0">
+        <ul class="help--slides-items" th:each="i : ${#numbers.sequence(0, #arrays.length(institution)-2)}" th:if="${i} %2 ==0">
             <li>
                <div class="col">
-                    <div class="title" th:text="'Fundacja: ' + ${institution[institutions].name}"></div>
-                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[institutions].description}"></div>
+                    <div class="title" th:text="'Fundacja: ' + ${institution[i].name}"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[i].description}"></div>
                 </div>
                 <div class="col">
-                    <div class="title" th:text="'Fundacja: ' + ${institution[institutions+1].name}"></div>
-                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[institutions+1].description}"></div>
+                    <div class="title" th:text="'Fundacja: ' + ${institution[i+1].name}"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' +  ${institution[i+1].description}"></div>
                 </div>
             </li>
 

@@ -3,10 +3,12 @@ package pl.coderslab.charity.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,13 +24,14 @@ public class Donation {
     String street;
     String city;
     String zipCode;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate pickUpDate;
     LocalTime pickUpTime;
     @Column(columnDefinition = "TEXT")
     String pickUpComment;
 
-    @ManyToOne
-    private Category category;
+    @ManyToMany
+    private List<Category> categoryList;
 
     @ManyToOne
     private Institution institution;
