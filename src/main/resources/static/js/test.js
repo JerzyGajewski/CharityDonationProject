@@ -10,15 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const id = document.getElementsByClassName('category');
         let categoryArr = [];
         for (let i = 0; i < id.length; i++) {
-            if (id.item(i).checked === true) {
-                categoryArr.push(id.item(i).parentElement.innerText);
+            if (id[i].checked === true) {
+                categoryArr.push(id[i].parentElement.innerText.trim());
             }
         }
         let categories = bags + ' worki z: ';
         let category = bags + ' worek z: ';
         for (let i = 0; i < categoryArr.length; i++) {
             if (bags == 1) {
-                category = category + categoryArr[i];
+                category = category + categoryArr[i] + ' ';
                 document.getElementById('cat').innerText = category;
             } else {
                 categories = categories + categoryArr[i] + ' ';
