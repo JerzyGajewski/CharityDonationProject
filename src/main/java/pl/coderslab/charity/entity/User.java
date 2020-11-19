@@ -21,8 +21,7 @@ public class User {
     @Column(unique = true)
     @Email
     String email;
-    String password1;
-    String password2;
+    String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     List<Role> roleList = new ArrayList<>();

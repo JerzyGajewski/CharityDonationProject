@@ -41,7 +41,7 @@ public class DonationController {
     @GetMapping("/form")
     public String donationForm(Model model) {
         List<Category> categoryList = categoryService.getCategory();
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryList);
         model.addAttribute("donation", new Donation());
         return "form";
     }

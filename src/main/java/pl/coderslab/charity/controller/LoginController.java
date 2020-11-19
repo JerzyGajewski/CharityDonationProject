@@ -26,7 +26,7 @@ public class LoginController {
     String dataChecked(@Param("email") String email, @Param("password") String password) {
         User user = userRepository.findByEmail(email);
         if (user != null) {
-            if (user.getPassword1().equals(password)) {
+            if (user.getPassword().equals(password)) {
                 return "form";
             } else return "login";
         } else return "register";

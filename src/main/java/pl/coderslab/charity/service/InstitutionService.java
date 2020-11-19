@@ -22,12 +22,15 @@ public class InstitutionService implements InstitutionInterface {
 
     @Override
     public List<Institution> getInstitution() {
-        List<Institution> institutions = new ArrayList<>();
-        for (int i = 0; i < InstitutionEnum.values().length; i++) {
-            Institution institution = new Institution();
-            institution.setName(InstitutionEnum.values()[i].getName());
-            institution.setDescription(InstitutionEnum.values()[i].getDescription());
-            institutions.add(institution);
+        List<Institution> institutions = institutionRepository.findAll();
+        if (institutions.size() == 0) {
+            for (int i = 0; i < InstitutionEnum.values().length; i++) {
+                Institution institution = new Institution();
+                institution.setName(InstitutionEnum.values()[i].getName());
+                institution.setDescription(InstitutionEnum.values()[i].getDescription());
+                institutions.add(institution);
+            }
+            saveInstitution(institutions);
         }
         return institutions;
     }
