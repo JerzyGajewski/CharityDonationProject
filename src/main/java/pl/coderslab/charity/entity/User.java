@@ -7,7 +7,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,11 +20,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    String name;
+    String surname;
     @Column(unique = true)
     @Email
     String email;
     String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    List<Role> roleList = new ArrayList<>();
+    Set<Role> roleList = new HashSet<>();
+
 }

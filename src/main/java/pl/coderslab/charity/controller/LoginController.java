@@ -2,33 +2,33 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.charity.entity.User;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.repository.UserRepository;
+import pl.coderslab.charity.service.UserService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
 
     private UserRepository userRepository;
-
-    public LoginController(UserRepository userRepository) {
+    private UserService userService;
+    public LoginController(UserRepository userRepository, UserService userService) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
-    @GetMapping("/login")
+    @GetMapping
     String loginForm() {
+
         return "login";
     }
 
-    @PostMapping("/login")
-    String dataChecked(@Param("email") String email, @Param("password") String password) {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            if (user.getPassword().equals(password)) {
-                return "form";
-            } else return "login";
-        } else return "register";
-    }
+//    @PostMapping
+//    String confirmLogin(@Param("email") String email){
+//        userService.loadUserByUsername(email);
+//        return "redirect:form";
+//    }
+
 }

@@ -6,7 +6,6 @@ import pl.coderslab.charity.enums.InstitutionEnum;
 import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.service.interfaces.InstitutionInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

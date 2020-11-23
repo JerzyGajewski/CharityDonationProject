@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,6 +22,6 @@ public class Role {
     String roleName;
 
     @ManyToMany(mappedBy = "roleList", fetch = FetchType.EAGER)
-    List<User> userList = new ArrayList<>();
+    Set<User> userList = new HashSet<>();
 
 }
